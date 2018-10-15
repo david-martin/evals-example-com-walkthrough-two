@@ -69,6 +69,7 @@ public class CamelRouter extends RouteBuilder {
             .convertBodyTo(String.class)
             .unmarshal().json(JsonLibrary.Jackson, ArrivalsList.class);
     
+    
         from("direct:departuresImplRemote").description("Departures REST service implementation route")
             .streamCaching()
             .to(String.format("http://%s/departures?bridgeEndpoint=true", departuresHost))
